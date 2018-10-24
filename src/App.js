@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import ItemList from './containers/item-list';
 
 class App extends Component {
   render() {
-    return <h1>hi</h1>;
+    return <ItemList />;
   }
 }
 
