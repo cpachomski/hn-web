@@ -22,7 +22,7 @@ class Axios extends Component {
   request = () =>
     this.setState({ loading: true }, () =>
       fetch(this.props.url)
-        .then(data => this.setState({ data }))
+        .then(res => this.setState({ data: res.data, loading: false }))
         .catch(error => this.setState({ data: null, error }))
     );
 
