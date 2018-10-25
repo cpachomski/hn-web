@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Axios from '../fetchers/axios';
+import ListItem from '../components/list-item';
 
 const LIST_TYPES = {
   top: 'top',
   best: 'best',
   new: 'new'
 };
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0px;
+`;
 
 class ItemList extends Component {
   state = {
@@ -16,10 +22,7 @@ class ItemList extends Component {
 
   render() {
     return (
-      <Axios
-        url={`http://hacker-news-api-dev.us-east-1.elasticbeanstalk.com/stories/${
-          this.state.listType
-        }`}>
+      <Axios url={`stories/${this.state.listType}`}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return <span>Loading</span>;
@@ -29,14 +32,11 @@ class ItemList extends Component {
           }
 
           return Array.isArray(data) ? (
-            <p>
-              <ul>
-                {data.map(item => (
-                  <li>{JSON.stringify(item)}</li>
-                ))}
-              </ul>
-              <button onClick={refetch}>Refresh</button>
-            </p>
+            <List>
+              {data.map(item => (
+                <ListItem key={item.id} {...item} />
+              ))}
+            </List>
           ) : null;
         }}
       </Axios>
