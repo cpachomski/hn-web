@@ -19,6 +19,12 @@ class Axios extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      this.refetch();
+    }
+  }
+
   request = () =>
     this.setState({ loading: true }, () =>
       fetch(this.props.url)
