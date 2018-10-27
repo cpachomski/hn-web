@@ -1,6 +1,32 @@
-export const transition = {
-  curve: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',
-  duration: '1s'
+import { keyframes } from 'styled-components';
+
+const animation = {
+  fadeInDown: keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+};
+
+const curves = {
+  cubic: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)'
+};
+
+const durations = {
+  short: '0.3s',
+  medium: '1s'
+};
+
+const delays = {
+  short: '0.04s'
+};
+
+const fonts = {
+  monospace: `"Lucida Console", Monaco, monospace`
 };
 
 export const colors = {
@@ -13,23 +39,47 @@ export const colors = {
 
 export const themes = {
   light: {
-    transition,
     name: 'light',
-    bkg: colors.white,
-    txt: {
+    animation,
+    colors: {
+      bkg: colors.white,
       main: colors.black,
       loud: colors.orange,
       quiet: colors.gray
+    },
+    curves,
+    delays,
+    durations,
+    text: {
+      fonts,
+      size: {
+        small: '1em',
+        medium: '1.2em',
+        large: '3em',
+        extraLarge: '5em'
+      }
     }
   },
   dark: {
-    transition,
     name: 'dark',
-    bkg: colors.black,
-    txt: {
+    animation,
+    colors: {
+      bkg: colors.black,
       main: colors.white,
       loud: colors.orange,
       quiet: colors.gray
+    },
+    curves,
+    delays,
+    durations,
+    text: {
+      fonts,
+      size: {
+        small: '1em',
+        medium: '1.2em',
+        large: '4em',
+        extraLarge: '5em'
+      }
     }
   }
 };

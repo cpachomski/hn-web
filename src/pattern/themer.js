@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { transition, themes } from './detail';
+import { themes } from './detail';
 
 const ThemeControl = React.createContext();
 
@@ -15,9 +15,9 @@ class Themer extends Component {
   };
 
   componentDidMount() {
-    document.body.style.transition = `background-color ${transition.duration} ${
-      transition.curve
-    }`;
+    document.body.style.transition = `background-color ${
+      this.state.theme.durations.medium
+    } ${this.state.theme.curves.cubic}`;
   }
 
   toggleTheme = () =>
