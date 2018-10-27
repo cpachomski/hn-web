@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 
+import Router from './router';
+
 import Themer from './pattern/themer';
 import { Container } from './pattern/structure';
 import Header from './components/header';
-import ItemList from './containers/item-list';
 
 class App extends Component {
   render() {
     return (
       <Themer>
         <Container>
-          <Header logoText="HN" />
-          <ItemList />
+          <Router>
+            <Header logoText="HN" />
+          </Router>
         </Container>
       </Themer>
     );
