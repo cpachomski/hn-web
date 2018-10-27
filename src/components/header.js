@@ -1,33 +1,47 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { colors } from '../pattern/detail';
 import Themer from '../pattern/themer';
-import MenuToggle from './menu-toggle';
+import MenuToggle from './hamburger';
+import Nav from './nav';
+
+const Wrapper = styled.div`
+  a {
+    text-decoration: none;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      > h1 {
+        color: ${props => props.theme.colors.main};
+      }
+    }
+  }
+`;
 
 const Row = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const Menu = styled.nav`
-  display: block;
-  min-height: 30px;
-  background-color: red;
+  animation: ${props => props.theme.animation.fadeInDown}
+    ${props => props.theme.durations.short} ${props => props.theme.curves.cubic}
+    forwards;
 `;
 
 const Logo = styled.h1`
   margin: 10px 0px;
-  color: ${colors.orange};
-  font-size: 5em;
+  color: ${props => props.theme.colors.loud};
+  font-size: ${props => props.theme.text.size.extraLarge};
   font-family: 'Lucida Console', Monaco, monospace;
+  transition: ${props =>
+    `color ${props.theme.durations.short} ${props.theme.curves.cubic}`};
 `;
 
 class Header extends Component {
   state = {
-    menuOpen: false
+    menuOpen: true
   };
 
   render() {
@@ -35,10 +49,16 @@ class Header extends Component {
       <Themer.Controls>
         {({ toggleTheme }) => {
           return (
-            <div>
-              {/* <Menu /> */}
+            <Wrapper>
+              <Nav
+                toggleTheme={toggleTheme}
+                isOpen={this.state.menuOpen}
+                onButtonClick={() => this.setState({ menuOpen: false })}
+              />
               <Row>
-                <Logo>{this.props.logoText}</Logo>
+                <Link to="/">
+                  <Logo>{this.props.logoText}</Logo>
+                </Link>
                 <MenuToggle
                   onClick={() => {
                     this.setState({ menuOpen: true });
@@ -46,7 +66,7 @@ class Header extends Component {
                   isHidden={this.state.menuOpen}
                 />
               </Row>
-            </div>
+            </Wrapper>
           );
         }}
       </Themer.Controls>
