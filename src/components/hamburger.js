@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -9,7 +9,8 @@ const Toggle = styled.button`
   padding: 5px;
   outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
 
     > div:first-child {
@@ -26,7 +27,7 @@ const Layer = styled.div`
   height: 5px;
   width: 40px;
   transform-origin: left;
-  background-color: ${props => props.theme.txt.loud};
+  background-color: ${props => props.theme.colors.loud};
   transition: transform 0.2s ease-out;
   transition-delay: ${props =>
     props.isHidden ? `${props.idx * 0.1}s` : `${-1 * props.idx * 0.1}s`};
@@ -43,27 +44,19 @@ const Layer = styled.div`
   }
 `;
 
-class MenuToggle extends PureComponent {
-  static propTypes = {
-    isHidden: PropTypes.bool,
-    onClick: PropTypes.func
-  };
+const Hamburger = ({ isHidden, onClick }) => (
+  <Toggle isHidden={isHidden} onClick={onClick}>
+    {Array(3)
+      .fill()
+      .map((_, idx) => (
+        <Layer idx={idx} key={`undersea-cheese-${idx}`} isHidden={isHidden} />
+      ))}
+  </Toggle>
+);
 
-  render() {
-    return (
-      <Toggle isHidden={this.props.isHidden} onClick={this.props.onClick}>
-        {Array(3)
-          .fill()
-          .map((_, idx) => (
-            <Layer
-              idx={idx}
-              key={`undersea-cheese-${idx}`}
-              isHidden={this.props.isHidden}
-            />
-          ))}
-      </Toggle>
-    );
-  }
-}
+Hamburger.propTypes = {
+  isHidden: PropTypes.bool,
+  onClick: PropTypes.func
+};
 
-export default MenuToggle;
+export default Hamburger;
