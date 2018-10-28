@@ -8,6 +8,7 @@ const Toggle = styled.button`
   outline: none;
   height: 40px;
   width: 40px;
+  background: none;
 
   &:hover,
   &:focus {
