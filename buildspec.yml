@@ -22,7 +22,7 @@ phases:
       - echo Bundles bundled
   post_build:
     commands:
-      - aws s3 sync public/ s3://chrispachom.ski/hn
-      - aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths /*
+      - aws s3 sync build/ s3://chrispachom.ski/hn
+      - aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths /hn
     finally:
       - echo Bundled bundles pushed to s3 successfully
