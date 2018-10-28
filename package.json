@@ -110,5 +110,6 @@
       "react-app"
     ]
   },
+  "homepage": "hn/",
   "proxy": "http://hacker-news-api-dev.us-east-1.elasticbeanstalk.com/"
 }
