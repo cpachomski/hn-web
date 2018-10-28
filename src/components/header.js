@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -41,8 +41,16 @@ const Logo = styled.h1`
 
 class Header extends Component {
   state = {
-    menuOpen: true
+    menuOpen: false
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.menuOpen === true) {
+      this.setState({
+        menuOpen: false
+      });
+    }
+  }
 
   render() {
     return (
@@ -78,4 +86,4 @@ Header.propTypes = {
   logoText: PropTypes.string
 };
 
-export default Header;
+export default withRouter(Header);
