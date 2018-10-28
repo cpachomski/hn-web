@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo \n Installing Yarn... \n
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+      - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+      - sudo apt-get -y update
+      - apt-get install -y yarn
+      - echo \n Installing the goodies... \n
+      - yarn
+    finally:
+      - echo Goodies have been got :) \n
+  pre_build:
+    ? commands
+  build:
+    commands:
+      - Bundling the bundles... \n
+      - yarn build
+    finally:
+      - echo Bundles bundled :) \n
+  post_build:
+    commands:
+      - aws s3 sync public/ s3://chrispachom.ski/hn
+      - aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths /hn/*
+    finally:
+      - echo Bundled bundles pushed to s3 successfully :) \n
