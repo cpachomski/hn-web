@@ -11,7 +11,7 @@ export const LIST_TYPES = {
 };
 
 const ListHeader = styled.h2`
-  margin: 15px 0px;
+  margin: 15px 0px 0px;
   display: inline-block;
   opacity: 0;
   text-transform: capitalize;
