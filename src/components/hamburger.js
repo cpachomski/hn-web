@@ -13,6 +13,10 @@ const Toggle = styled.button`
   &:focus {
     cursor: pointer;
 
+    > div {
+      background-color: ${props => props.theme.colors.main};
+    }
+
     > div:first-child {
       transform: ${props => (props.isHidden ? `scaleX(0)` : `scaleX(0.6)`)};
     }
@@ -26,11 +30,13 @@ const Toggle = styled.button`
 const Layer = styled.div`
   height: 5px;
   width: 40px;
-  transform-origin: left;
+  transform-origin: right;
   background-color: ${props => props.theme.colors.loud};
-  transition: transform 0.2s ease-out;
+  transition: background-color, transform;
+  transition-duration: ${props => props.theme.durations.short};
   transition-delay: ${props =>
     props.isHidden ? `${props.idx * 0.1}s` : `${-1 * props.idx * 0.1}s`};
+  transition-timing-function: ${props => props.theme.curves.cubic};
 
   &:first-child,
   &:nth-child(2) {
