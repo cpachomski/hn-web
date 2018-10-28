@@ -11,7 +11,7 @@ phases:
       - echo \n Installing the goodies... \n
       - yarn
     finally:
-      - echo Goodies have been got :) \n
+      - echo Goodies have been got \n
   pre_build:
     ? commands
   build:
@@ -19,10 +19,10 @@ phases:
       - Bundling the bundles... \n
       - yarn build
     finally:
-      - echo Bundles bundled :) \n
+      - echo Bundles bundled \n
   post_build:
     commands:
       - aws s3 sync public/ s3://chrispachom.ski/hn
       - aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths /hn/*
     finally:
-      - echo Bundled bundles pushed to s3 successfully :) \n
+      - echo Bundled bundles pushed to s3 successfully \n
