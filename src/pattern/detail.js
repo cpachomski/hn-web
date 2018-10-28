@@ -55,7 +55,7 @@ export const themes = {
       size: {
         small: '1em',
         medium: '1.2em',
-        large: '3em',
+        large: '2.3em',
         extraLarge: '5em'
       }
     }
@@ -77,7 +77,7 @@ export const themes = {
       size: {
         small: '1em',
         medium: '1.2em',
-        large: '4em',
+        large: '2.3em',
         extraLarge: '5em'
       }
     }
