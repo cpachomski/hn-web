@@ -14,7 +14,7 @@ const LI = styled.li`
   margin: 25px 0px;
   opacity: 0;
   animation: ${props => props.theme.animation.fadeInDown}
-    ${props => props.theme.durations.medium} ${props => props.idx * 0.04}s
+    ${props => props.theme.durations.short} ${props => props.idx * 0.04}s
     ${props => props.theme.curves.cubic} forwards;
   > a {
     outline: none;
